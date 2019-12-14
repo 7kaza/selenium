@@ -3,7 +3,7 @@ def capitalize():
     x = txt.capitalize()
     return x 
 def count():
-    txt = 'ala ma kota'
+    txt = 'ala ma kota i kota'
     x = txt.count('kota')
     return x
 def islower():
