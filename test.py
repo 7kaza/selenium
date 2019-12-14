@@ -8,20 +8,20 @@ class test_strings(unittest.TestCase):
         self.assertEqual(wynik, 'Ala ma kota')
 
     def test_liczenie(self):
-        wynik = capitalize.count('kota')
-        self.assertEqual(wynik, 1)
+        wynik = capitalize.count()
+        self.assertEqual(wynik, 2)
 
     def test_alfabet(self):
         wynik = capitalize.isalpha()
-        self.assertEqual(wynik, 'True')
+        self.assertFalse(wynik)
 
     def test_cyfry(self):
         wynik = capitalize.isdigit()
-        self.assertEqual(wynik, 'False')
+        self.assertTrue(wynik)
 
     def test_male_litery(self):
         wynik = capitalize.islower()
-        self.assertEqual(wynik, 'True')
+        self.assertFalse(wynik)
 
 if __name__ == '__main__':
     unittest.main()
