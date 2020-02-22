@@ -20,6 +20,7 @@ class WsbPlCheck(unittest.TestCase):
         driver.get('http://www.wsb.pl')
         self.assertIn("Bankowe",driver.title)
         print(driver.title)
+        
 
 
 #sprzatanie po tescie
