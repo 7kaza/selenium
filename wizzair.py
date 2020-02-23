@@ -10,6 +10,10 @@ from selenium.webdriver.support import expected_conditions as EC
 imie1 = 'Piotr'
 nazwisko1 = 'Nowak'
 gender = 'male'
+numer = '568303983'
+email = 'karamaster.pl'
+haslo = 'Diyfhiv2'
+kraj = 'Polska'
 
 class WizzarRegistration(unittest.TestCase):
 
@@ -44,8 +48,41 @@ class WizzarRegistration(unittest.TestCase):
             f = driver.find_element_by_xpath('//label[@data-test="register-genderfemale"]')
             f.click()
 
-        narodowosc = driver.find_element_by_xpath('//div[@class='phone-number__calling-code-selector__filled__country__name']')
+        narodowosc = driver.find_element_by_xpath('//div[@data-test="booking-register-country-code"]')
         narodowosc.click()
+
+        polska = WebDriverWait(driver, 30).until(EC.element_to_be_clickable((By.XPATH,'//li[@data-test="PL"]')))
+        polska.click()
+
+        telefon_input = driver.find_element_by_name('phoneNumberValidDigits')
+        telefon_input.send_keys(numer)
+
+        email_input = driver.find_element_by_name('email')
+        email_input.send_keys(email)
+
+        haslo_input = driver.find_element_by_name('password')
+        haslo_input.send_keys(haslo)
+
+        country_field = driver.find_element_by_xpath('//input[@data-test="booking-register-country"]')
+        country_field.click()
+        country_to_choose = driver.find_element_by_xpath('//div[@class="register-form__country-container__locations"]')
+        kraj_input = country_to_choose.find_elements_by_tag_name("label")
+
+        for label in kraj_input:
+            # Wewnatrz "label" znajdz element "strong"
+            option=label.find_element_by_tag_name('strong')
+            # Jesli tekst elementu jest taki jak zadany w valid_country
+            if option.get_attribute("innerText") == kraj:
+                # Przewin do tego elementu
+                option.location_once_scrolled_into_view
+                # Kliknij
+                option.click()
+                # Wyjdz z petli - juz znalazlem i kliknalem
+                break
+
+        
+
+
 
 
 
